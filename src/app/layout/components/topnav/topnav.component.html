@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="fix-nav">
+    <button type="button" mat-icon-button class="visible-md" (click)="toggleSidebar()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <div class="nav-brand">
+        OutStanding Report
+    </div>
+    <form class="hidden-sm" style="margin-left: 20px; margin-top: 5px">
+        
+    </form>
+    <span class="nav-spacer"></span>
+   
+    
+    <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    {{UserName}}
+    <mat-menu #profile="matMenu">
+        <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span [routerLink]="['/profile']">{{ 'Profile' | translate }}</span>
+        </button>
+        
+    </mat-menu>
+    <button mat-icon-button (click)="onLoggedout()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>

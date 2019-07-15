@@ -1,0 +1,27 @@
+<form class="example-form" [formGroup]='usersForm'>
+  <mat-form-field class="example-full-width">
+    <input #providerAuto matInput placeholder="Choose a Provider" [matAutocomplete]="auto" formControlName='userInput' >
+    <mat-error *ngIf="usersForm.get('userInput').hasError('required')">
+      {{ titleAlert }}
+    </mat-error >
+    
+    <mat-error *ngIf="IsValidProviderSelected">
+      You should enter value from suggested one only.  <strong>'{{forbiddenNames}}'</strong> is not allowed.
+    </mat-error>
+  </mat-form-field>
+  <!-- <span>Your choice is: {{usersForm.get('userInput').value | json}}</span> -->
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let user of filteredUsers" [value]="user">
+        <span>{{ user.CompanyName }}</span>
+        <small> | {{ user.CompanyId }}</small>
+      </mat-option>
+     
+    </ng-container>
+  </mat-autocomplete>
+  
+  <!-- <button id="btn" (click)="SaveItems()" mat-raised-button color="primary">GetValues</button> -->
+</form>
+
